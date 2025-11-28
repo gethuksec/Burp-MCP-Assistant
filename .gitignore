@@ -1,0 +1,67 @@
+# Node modules
+node_modules/
+
+# Build outputs
+out/
+dist/
+*.vsix
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+temp/
+tmp/
+scratch/
+
+# Archived/obsolete files
+.artifacts/
+
+# Local configuration
+*.local.json
+
+# Package files
+*.vsix
+
+# Debug files
+*.map
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github/instructions/snyk_rules.instructions.md

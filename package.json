@@ -1,0 +1,156 @@
+{
+  "name": "burp-mcp-assistant",
+  "displayName": "Burp MCP Assistant",
+  "description": "Security testing prompts & workflows for Burp Suite MCP - 100+ expert templates for penetration testing",
+  "version": "0.2.0",
+  "publisher": "gethuksec",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "burp",
+    "security",
+    "pentesting",
+    "mcp",
+    "prompts",
+    "cheatsheet"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "burpMCP.openPromptLibrary",
+        "title": "Burp MCP: Open Prompt Library"
+      },
+      {
+        "command": "burpMCP.copyPrompt",
+        "title": "Burp MCP: Copy Prompt to Clipboard"
+      },
+      {
+        "command": "burpMCP.insertPrompt",
+        "title": "Burp MCP: Insert Prompt at Cursor"
+      },
+      {
+        "command": "burpMCP.searchPrompts",
+        "title": "Burp MCP: Search Prompts"
+      },
+      {
+        "command": "burpMCP.showToolsReference",
+        "title": "Burp MCP: Show Tools Reference"
+      },
+      {
+        "command": "burpMCP.clearHistory",
+        "title": "Burp MCP: Clear Usage History"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "burpMCP",
+          "title": "Burp MCP Assistant",
+          "icon": "resources/burp-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "burpMCP": [
+        {
+          "id": "burpMCP.prompts",
+          "name": "Prompt Library",
+          "icon": "resources/burp-icon.svg"
+        },
+        {
+          "id": "burpMCP.history",
+          "name": "Recently Used",
+          "icon": "resources/burp-icon.svg"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Burp MCP Assistant",
+      "properties": {
+        "burpMCP.prompt.defaultAction": {
+          "type": "string",
+          "enum": ["copy", "insertAtCursor"],
+          "enumDescriptions": [
+            "Copy to clipboard (then press Ctrl+Shift+I to open Cursor Chat and paste)",
+            "Insert at cursor position in active editor"
+          ],
+          "default": "copy",
+          "description": "Default action when clicking a prompt"
+        },
+        "burpMCP.prompt.autoInsert": {
+          "type": "boolean",
+          "default": false,
+          "description": "[Deprecated] Use defaultAction instead"
+        },
+        "burpMCP.prompt.includeComments": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include explanatory comments in prompts"
+        },
+        "burpMCP.history.maxItems": {
+          "type": "number",
+          "default": 50,
+          "description": "Maximum number of recently used prompts to track"
+        },
+        "burpMCP.ui.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications when copying/inserting prompts"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "burpMCP.openPromptLibrary",
+        "key": "ctrl+shift+b l",
+        "mac": "cmd+shift+b l"
+      },
+      {
+        "command": "burpMCP.searchPrompts",
+        "key": "ctrl+shift+b s",
+        "mac": "cmd+shift+b s"
+      },
+      {
+        "command": "burpMCP.showToolsReference",
+        "key": "ctrl+shift+b r",
+        "mac": "cmd+shift+b r"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "burpMCP.copyPrompt",
+          "when": "view == burpMCP.prompts && viewItem == prompt",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node node_modules/typescript/bin/tsc -p ./",
+    "watch": "node node_modules/typescript/bin/tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {}
+}
