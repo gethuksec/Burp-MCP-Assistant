@@ -60,15 +60,21 @@ This extension **does NOT** connect to Burp Suite directly. Instead, it provides
    - Extensions → Add → Java → Select `build/libs/burp-mcp-all.jar`
    - MCP tab → Enable ✅
 
-### Step 2: Configure Cursor (One Time)
+### Step 2: Configure Cursor / AntiGravity (One Time)
 
 Add to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
     "Burp MCP": {
-      "type": "sse",
-      "url": "http://127.0.0.1:9876/sse"
+      "command": "<java path>",
+      "args": [
+        "-jar",
+        "<jar path>",
+        "--sse-url",
+        "<mcp server>"
+      ],
+      "disabled": false
     }
   }
 }
