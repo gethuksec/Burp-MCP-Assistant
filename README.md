@@ -80,6 +80,23 @@ Add to `~/.cursor/mcp.json`:
 }
 ```
 
+Example
+```json
+{
+  "mcpServers": {
+    "Burp MCP": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "D:/mcp-demo/mcp-proxy.jar",
+        "--sse-url",
+        "http://127.0.0.1:9876"
+      ]
+    }
+  }
+}
+```
+
 **Restart Cursor** after adding this configuration.
 
 ### Step 3: Install This Extension
