@@ -78,7 +78,10 @@
       "properties": {
         "burpMCP.prompt.defaultAction": {
           "type": "string",
-          "enum": ["copy", "insertAtCursor"],
+          "enum": [
+            "copy",
+            "insertAtCursor"
+          ],
           "enumDescriptions": [
             "Copy to clipboard (then press Ctrl+Shift+I to open Cursor Chat and paste)",
             "Insert at cursor position in active editor"
@@ -141,15 +144,19 @@
     "watch": "node node_modules/typescript/bin/tsc -watch -p ./",
     "pretest": "npm run compile",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "xvfb-run node ./out/test/runTest.js"
   },
   "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.x",
     "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
     "@vscode/test-electron": "^2.3.8",
     "eslint": "^8.54.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
     "typescript": "^5.3.0"
   },
   "dependencies": {}
