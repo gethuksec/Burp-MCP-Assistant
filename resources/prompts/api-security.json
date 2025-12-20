@@ -1,0 +1,200 @@
+[
+    {
+        "id": "api-comprehensive",
+        "name": "Comprehensive API Security Test",
+        "description": "Perform multiple security tests on an API endpoint",
+        "category": "API Security",
+        "mcpTool": "multiple",
+        "template": "Execute comprehensive security testing on {{endpoint}}",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "API endpoint to test"
+            },
+            {
+                "name": "auth_token",
+                "type": "string",
+                "required": false,
+                "description": "Authentication token (if required)"
+            }
+        ],
+        "examples": [
+            "Comprehensive test of /api/v1/users endpoint"
+        ],
+        "tags": [
+            "api",
+            "comprehensive",
+            "automation"
+        ]
+    },
+    {
+        "id": "rate-limit-test",
+        "name": "Rate Limiting Test",
+        "description": "Test API rate limiting implementation",
+        "category": "API Security",
+        "mcpTool": "send_to_intruder",
+        "template": "Test {{endpoint}} for rate limiting",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "API endpoint to test"
+            }
+        ],
+        "examples": [
+            "Test /api/login rate limiting"
+        ],
+        "tags": [
+            "rate-limit",
+            "dos",
+            "api-abuse"
+        ]
+    },
+    {
+        "id": "api-mass-assignment",
+        "name": "Mass Assignment Test",
+        "description": "Test for mass assignment vulnerabilities in API",
+        "category": "API Security",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test mass assignment at {{url}}. Add extra parameters like isAdmin, role, balance to modify restricted fields.",
+        "parameters": [],
+        "examples": [
+            "Test POST /api/user with additional {\"isAdmin\":true} field"
+        ],
+        "tags": [
+            "mass-assignment",
+            "api",
+            "parameter-binding",
+            "authorization"
+        ]
+    },
+    {
+        "id": "api-verb-tampering",
+        "name": "API HTTP Verb Tampering",
+        "description": "Test API endpoints with different HTTP methods",
+        "category": "API Security",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test HTTP verb tampering at {{url}}. Try all HTTP methods (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD) to find hidden functionality.",
+        "parameters": [],
+        "examples": [
+            "Test if PUT /api/user allows updates when only POST is documented"
+        ],
+        "tags": [
+            "http-verb",
+            "api",
+            "method-tampering",
+            "authorization"
+        ]
+    },
+    {
+        "id": "api-excessive-data",
+        "name": "Excessive Data Exposure Test",
+        "description": "Test API for excessive data exposure",
+        "category": "API Security",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to analyze API responses from {{url}}. Check if API returns more data than needed (SSN, passwords, private info) that client filters.",
+        "parameters": [],
+        "examples": [
+            "Check if /api/users returns password hashes or SSNs unnecessarily"
+        ],
+        "tags": [
+            "excessive-data",
+            "api",
+            "information-disclosure",
+            "privacy"
+        ]
+    },
+    {
+        "id": "api-lack-resources-limits",
+        "name": "API Resource Limits Test",
+        "description": "Test API for lack of resource and rate limits",
+        "category": "API Security",
+        "mcpTool": "send_to_intruder",
+        "template": "Use Burp MCP Intruder to test API rate limiting at {{url}}. Send rapid requests to check for DoS potential, resource exhaustion, or lack of pagination limits.",
+        "parameters": [],
+        "examples": [
+            "Test /api/users?limit=999999 to extract all records at once"
+        ],
+        "tags": [
+            "rate-limit",
+            "api",
+            "dos",
+            "resource-exhaustion"
+        ]
+    },
+    {
+        "id": "graphql-introspection",
+        "name": "GraphQL Introspection Query",
+        "description": "Test GraphQL introspection to discover schema",
+        "category": "API Security",
+        "mcpTool": "send_http2_request",
+        "template": "Use Burp MCP to run GraphQL introspection query at {{url}}. Discover all types, queries, mutations, and fields available in the schema.",
+        "parameters": [],
+        "examples": [
+            "Run __schema query to enumerate GraphQL API structure"
+        ],
+        "tags": [
+            "graphql",
+            "introspection",
+            "schema-discovery",
+            "api"
+        ]
+    },
+    {
+        "id": "graphql-batching",
+        "name": "GraphQL Batching Attack",
+        "description": "Test GraphQL for batching attack to bypass rate limits",
+        "category": "API Security",
+        "mcpTool": "send_http2_request",
+        "template": "Use Burp MCP to test GraphQL batching at {{url}}. Send array of queries in single request to bypass rate limiting or perform credential brute force.",
+        "parameters": [],
+        "examples": [
+            "Send 100 login mutations in one GraphQL batch request"
+        ],
+        "tags": [
+            "graphql",
+            "batching",
+            "rate-limit-bypass",
+            "brute-force"
+        ]
+    },
+    {
+        "id": "graphql-nested-dos",
+        "name": "GraphQL Nested Query DoS",
+        "description": "Test GraphQL for deeply nested query DoS",
+        "category": "API Security",
+        "mcpTool": "send_http2_request",
+        "template": "Use Burp MCP to test GraphQL at {{url}} with deeply nested queries. Create circular queries to cause resource exhaustion and DoS.",
+        "parameters": [],
+        "examples": [
+            "Send deeply nested query: user{posts{user{posts{user...}}}}"
+        ],
+        "tags": [
+            "graphql",
+            "dos",
+            "nested-query",
+            "resource-exhaustion"
+        ]
+    },
+    {
+        "id": "graphql-field-duplication",
+        "name": "GraphQL Field Duplication",
+        "description": "Test GraphQL field duplication for DoS",
+        "category": "API Security",
+        "mcpTool": "send_http2_request",
+        "template": "Use Burp MCP to test GraphQL field duplication at {{url}}. Request same expensive field multiple times using aliases to cause DoS.",
+        "parameters": [],
+        "examples": [
+            "Query {a1:users a2:users a3:users ... a1000:users} for DoS"
+        ],
+        "tags": [
+            "graphql",
+            "dos",
+            "field-duplication",
+            "alias-abuse"
+        ]
+    }
+]

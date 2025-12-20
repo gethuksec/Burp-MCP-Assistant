@@ -1,0 +1,244 @@
+[
+    {
+        "id": "sql-injection-basic",
+        "name": "SQL Injection Basic Test",
+        "description": "Test endpoint for SQL injection vulnerabilities",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Send HTTP/1.1 {{method}} request to {{url}}\nTest parameter {{parameter}} with SQL injection payloads",
+        "parameters": [
+            {
+                "name": "url",
+                "type": "url",
+                "required": true,
+                "description": "Target URL to test"
+            },
+            {
+                "name": "method",
+                "type": "select",
+                "required": true,
+                "description": "HTTP method",
+                "options": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE"
+                ]
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "Parameter name to test"
+            }
+        ],
+        "examples": [
+            "Test /api/users?id=1 for SQL injection on id parameter"
+        ],
+        "tags": [
+            "sqli",
+            "injection",
+            "database",
+            "owasp-top-10"
+        ]
+    },
+    {
+        "id": "xss-reflected",
+        "name": "Reflected XSS Test",
+        "description": "Test for reflected cross-site scripting vulnerabilities",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{url}} for reflected XSS in parameter {{parameter}}",
+        "parameters": [
+            {
+                "name": "url",
+                "type": "url",
+                "required": true,
+                "description": "Target URL"
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "Parameter to inject payload"
+            }
+        ],
+        "examples": [
+            "Test /search?q= for reflected XSS"
+        ],
+        "tags": [
+            "xss",
+            "injection",
+            "client-side",
+            "owasp-top-10"
+        ]
+    },
+    {
+        "id": "ssrf-test",
+        "name": "SSRF Vulnerability Test",
+        "description": "Test for Server-Side Request Forgery",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{endpoint}} for SSRF in parameter {{parameter}}",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "Endpoint that makes external requests"
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "Parameter accepting URLs"
+            }
+        ],
+        "examples": [
+            "Test /api/fetch?url= for SSRF"
+        ],
+        "tags": [
+            "ssrf",
+            "injection",
+            "server-side"
+        ]
+    },
+    {
+        "id": "command-injection",
+        "name": "Command Injection Test",
+        "description": "Test for OS command injection vulnerabilities",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{endpoint}} for command injection in {{parameter}}",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "Endpoint that executes system commands"
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "Parameter passed to system"
+            }
+        ],
+        "examples": [
+            "Test /ping?host= for command injection"
+        ],
+        "tags": [
+            "command-injection",
+            "rce",
+            "os-injection"
+        ]
+    },
+    {
+        "id": "sql-injection-blind",
+        "name": "Blind SQL Injection Test",
+        "description": "Test for blind SQL injection using time-based payloads",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} parameter {{param}} for blind SQL injection. Send requests with time-based SQL payloads (e.g., SLEEP, WAITFOR DELAY) and analyze response times to detect vulnerabilities.",
+        "parameters": [],
+        "examples": [
+            "Test /api/product?id=1 for blind SQLi with time delays"
+        ],
+        "tags": [
+            "sqli",
+            "blind-sqli",
+            "time-based",
+            "injection"
+        ]
+    },
+    {
+        "id": "sql-injection-union",
+        "name": "Union-Based SQL Injection",
+        "description": "Test for union-based SQL injection to extract data",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} for union-based SQL injection. Try UNION SELECT payloads to determine column count and extract data from the database.",
+        "parameters": [],
+        "examples": [
+            "Test /search?q= for union-based SQLi to extract admin credentials"
+        ],
+        "tags": [
+            "sqli",
+            "union-based",
+            "data-extraction",
+            "injection"
+        ]
+    },
+    {
+        "id": "sql-injection-error",
+        "name": "Error-Based SQL Injection",
+        "description": "Test for error-based SQL injection vulnerabilities",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} for error-based SQL injection. Send malformed SQL payloads and analyze error messages that may reveal database structure.",
+        "parameters": [],
+        "examples": [
+            "Test /api/user?id= for error-based SQLi"
+        ],
+        "tags": [
+            "sqli",
+            "error-based",
+            "information-disclosure",
+            "injection"
+        ]
+    },
+    {
+        "id": "sql-injection-boolean",
+        "name": "Boolean-Based Blind SQLi",
+        "description": "Test for boolean-based blind SQL injection",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} for boolean-based blind SQL injection. Send true/false conditions and compare responses to infer database content.",
+        "parameters": [],
+        "examples": [
+            "Test /api/check?id= for boolean-based blind SQLi"
+        ],
+        "tags": [
+            "sqli",
+            "blind-sqli",
+            "boolean-based",
+            "injection"
+        ]
+    },
+    {
+        "id": "sql-injection-second-order",
+        "name": "Second-Order SQL Injection",
+        "description": "Test for second-order SQL injection vulnerabilities",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test for second-order SQL injection. Store malicious SQL payloads in {{input_endpoint}}, then observe if they execute when retrieved at {{output_endpoint}}.",
+        "parameters": [],
+        "examples": [
+            "Store SQLi in profile update, check if it executes on profile view"
+        ],
+        "tags": [
+            "sqli",
+            "second-order",
+            "stored-injection",
+            "advanced"
+        ]
+    },
+    {
+        "id": "nosql-injection",
+        "name": "NoSQL Injection Test",
+        "description": "Test for NoSQL injection (MongoDB, etc.)",
+        "category": "Input Validation",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} for NoSQL injection. Try payloads like {\"$ne\": null}, {\"$gt\": \"\"}, and JavaScript injection to bypass authentication or extract data.",
+        "parameters": [],
+        "examples": [
+            "Test /api/login for MongoDB injection with $ne operator"
+        ],
+        "tags": [
+            "nosql",
+            "mongodb",
+            "injection",
+            "authentication"
+        ]
+    }
+]

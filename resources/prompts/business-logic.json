@@ -1,0 +1,182 @@
+[
+    {
+        "id": "race-condition",
+        "name": "Race Condition Test",
+        "description": "Test for race condition vulnerabilities",
+        "category": "Business Logic",
+        "mcpTool": "send_to_intruder",
+        "template": "Use Burp MCP Intruder with single-packet attack mode to test race condition at {{url}}. Send parallel requests to exploit timing windows.",
+        "parameters": [],
+        "examples": [
+            "Test /api/withdraw by sending 10 simultaneous requests to overdraw balance"
+        ],
+        "tags": [
+            "race-condition",
+            "timing",
+            "concurrency",
+            "toctou"
+        ]
+    },
+    {
+        "id": "payment-manipulation",
+        "name": "Payment Amount Manipulation",
+        "description": "Test payment flows for amount manipulation",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test payment manipulation at {{url}}. Try negative amounts, zero, decimal manipulation, or currency switching during checkout.",
+        "parameters": [],
+        "examples": [
+            "Test /checkout by changing amount from 100.00 to 0.01 or -100.00"
+        ],
+        "tags": [
+            "payment",
+            "price-manipulation",
+            "business-logic",
+            "fraud"
+        ]
+    },
+    {
+        "id": "coupon-abuse",
+        "name": "Coupon & Discount Code Abuse",
+        "description": "Test for coupon/promo code abuse",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test coupon abuse at {{url}}. Try applying multiple coupons, reusing expired codes, or stacking discounts beyond 100%.",
+        "parameters": [],
+        "examples": [
+            "Test if multiple discount codes can be applied simultaneously"
+        ],
+        "tags": [
+            "coupon",
+            "discount",
+            "promo-code",
+            "abuse"
+        ]
+    },
+    {
+        "id": "inventory-manipulation",
+        "name": "Inventory Quantity Manipulation",
+        "description": "Test for inventory/stock manipulation",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test inventory manipulation at {{url}}. Try ordering negative quantities, exceeding stock limits, or race conditions on limited items.",
+        "parameters": [],
+        "examples": [
+            "Test /cart by setting quantity to -1 or 999999 for limited item"
+        ],
+        "tags": [
+            "inventory",
+            "stock",
+            "quantity",
+            "business-logic"
+        ]
+    },
+    {
+        "id": "workflow-bypass",
+        "name": "Multi-Step Workflow Bypass",
+        "description": "Bypass multi-step business processes",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test workflow bypass at {{url}}. Skip steps in checkout, registration, or approval processes by jumping directly to final step.",
+        "parameters": [],
+        "examples": [
+            "Test if /checkout/step3 can be accessed directly without completing step1,2"
+        ],
+        "tags": [
+            "workflow",
+            "bypass",
+            "multi-step",
+            "business-logic"
+        ]
+    },
+    {
+        "id": "refund-abuse",
+        "name": "Refund & Credit Abuse",
+        "description": "Test refund/credit system for abuse",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test refund abuse at {{url}}. Try multiple refunds, refund before payment, or refund more than purchase amount.",
+        "parameters": [],
+        "examples": [
+            "Test if same order can be refunded multiple times"
+        ],
+        "tags": [
+            "refund",
+            "credit",
+            "abuse",
+            "fraud"
+        ]
+    },
+    {
+        "id": "subscription-bypass",
+        "name": "Subscription & Premium Bypass",
+        "description": "Bypass subscription/premium feature restrictions",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to bypass subscription checks at {{url}}. Try accessing premium APIs directly, manipulating subscription status, or reusing trial periods.",
+        "parameters": [],
+        "examples": [
+            "Test /api/premium-feature with free account token"
+        ],
+        "tags": [
+            "subscription",
+            "premium",
+            "bypass",
+            "business-logic"
+        ]
+    },
+    {
+        "id": "loyalty-points-abuse",
+        "name": "Loyalty Points Manipulation",
+        "description": "Abuse loyalty points or reward systems",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test points manipulation at {{url}}. Try adding points without purchase, negative redemption, or integer overflow in points balance.",
+        "parameters": [],
+        "examples": [
+            "Test /api/redeem by redeeming -1000 points to add points instead of subtract"
+        ],
+        "tags": [
+            "loyalty-points",
+            "rewards",
+            "manipulation",
+            "fraud"
+        ]
+    },
+    {
+        "id": "time-based-bypass",
+        "name": "Time-Based Logic Bypass",
+        "description": "Bypass time-based restrictions",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to bypass time restrictions at {{url}}. Manipulate timestamps, timezone parameters, or system time to access time-limited features.",
+        "parameters": [],
+        "examples": [
+            "Test /api/limited-offer with manipulated timestamp to access expired promotion"
+        ],
+        "tags": [
+            "time-based",
+            "timestamp",
+            "bypass",
+            "business-logic"
+        ]
+    },
+    {
+        "id": "resource-exhaustion",
+        "name": "Application Resource Exhaustion",
+        "description": "Test for resource exhaustion vulnerabilities",
+        "category": "Business Logic",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test resource exhaustion at {{url}}. Request expensive operations, large exports, complex calculations, or storage abuse.",
+        "parameters": [],
+        "examples": [
+            "Test /api/export by requesting export of 10 million records"
+        ],
+        "tags": [
+            "resource-exhaustion",
+            "dos",
+            "abuse",
+            "performance"
+        ]
+    }
+]

@@ -1,0 +1,182 @@
+[
+    {
+        "id": "poc-generation",
+        "name": "Proof of Concept Generator",
+        "description": "Generate PoC for discovered vulnerability",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to generate PoC for vulnerability found at {{url}}. Create reproducible steps, curl commands, and request/response samples.",
+        "parameters": [],
+        "examples": [
+            "Generate PoC curl command for SQLi found in /api/search"
+        ],
+        "tags": [
+            "poc",
+            "proof-of-concept",
+            "documentation",
+            "reporting"
+        ]
+    },
+    {
+        "id": "evidence-collection",
+        "name": "Evidence Collection & Screenshots",
+        "description": "Collect evidence for vulnerability report",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to collect evidence for {{vulnerability}} at {{url}}. Gather HTTP requests, responses, headers, and payload details.",
+        "parameters": [],
+        "examples": [
+            "Collect evidence showing successful XSS execution with request/response"
+        ],
+        "tags": [
+            "evidence",
+            "collection",
+            "reporting",
+            "documentation"
+        ]
+    },
+    {
+        "id": "history-analysis",
+        "name": "HTTP History Analysis",
+        "description": "Analyze Burp proxy history for patterns",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to analyze proxy history from {{url}}. Search for sensitive data, error messages, or security headers.",
+        "parameters": [],
+        "examples": [
+            "Analyze proxy history for passwords, tokens, or API keys in requests"
+        ],
+        "tags": [
+            "history",
+            "analysis",
+            "proxy",
+            "patterns"
+        ]
+    },
+    {
+        "id": "security-headers-report",
+        "name": "Security Headers Analysis",
+        "description": "Generate security headers compliance report",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to analyze security headers from {{url}}. Check for CSP, HSTS, X-Frame-Options, X-Content-Type-Options, etc.",
+        "parameters": [],
+        "examples": [
+            "Generate report of missing security headers in application responses"
+        ],
+        "tags": [
+            "security-headers",
+            "csp",
+            "hsts",
+            "report"
+        ]
+    },
+    {
+        "id": "vulnerability-summary",
+        "name": "Vulnerability Summary Report",
+        "description": "Generate comprehensive vulnerability summary",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Generate comprehensive vulnerability summary for {{target}}. Include severity, CVSS scores, affected endpoints, and remediation recommendations.",
+        "parameters": [],
+        "examples": [
+            "Create executive summary of all vulnerabilities found in assessment"
+        ],
+        "tags": [
+            "summary",
+            "report",
+            "vulnerability",
+            "documentation"
+        ]
+    },
+    {
+        "id": "cvss-calculation",
+        "name": "CVSS Score Calculation",
+        "description": "Calculate CVSS score for vulnerability",
+        "category": "Reporting & Documentation",
+        "mcpTool": "url_decode",
+        "template": "Calculate CVSS v3.1 score for {{vulnerability}} at {{url}}. Consider exploitability, impact, and environmental metrics.",
+        "parameters": [],
+        "examples": [
+            "Calculate CVSS score for reflected XSS with no authentication required"
+        ],
+        "tags": [
+            "cvss",
+            "scoring",
+            "severity",
+            "risk"
+        ]
+    },
+    {
+        "id": "remediation-recommendations",
+        "name": "Remediation Recommendations",
+        "description": "Generate remediation guidance for vulnerabilities",
+        "category": "Reporting & Documentation",
+        "mcpTool": "url_decode",
+        "template": "Generate remediation recommendations for {{vulnerability}} found at {{url}}. Include code examples, best practices, and verification steps.",
+        "parameters": [],
+        "examples": [
+            "Create remediation guide for SQL injection with parameterized query example"
+        ],
+        "tags": [
+            "remediation",
+            "fix",
+            "recommendations",
+            "guidance"
+        ]
+    },
+    {
+        "id": "timeline-documentation",
+        "name": "Assessment Timeline Documentation",
+        "description": "Document assessment timeline and methodology",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Document assessment timeline for {{target}}. Include scope, methodology, tools used, and key findings timeline.",
+        "parameters": [],
+        "examples": [
+            "Create timeline showing when each vulnerability was discovered"
+        ],
+        "tags": [
+            "timeline",
+            "documentation",
+            "methodology",
+            "report"
+        ]
+    },
+    {
+        "id": "compliance-mapping",
+        "name": "Compliance Framework Mapping",
+        "description": "Map findings to compliance frameworks",
+        "category": "Reporting & Documentation",
+        "mcpTool": "url_decode",
+        "template": "Map vulnerabilities from {{target}} to compliance requirements (OWASP Top 10, PCI-DSS, GDPR, etc.).",
+        "parameters": [],
+        "examples": [
+            "Map SQLi finding to OWASP A03:2021 and PCI-DSS Req 6.5.1"
+        ],
+        "tags": [
+            "compliance",
+            "owasp",
+            "pci-dss",
+            "mapping"
+        ]
+    },
+    {
+        "id": "report-export",
+        "name": "Professional Report Export",
+        "description": "Export findings in professional report format",
+        "category": "Reporting & Documentation",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Export assessment findings for {{target}} in professional format. Include executive summary, technical details, evidence, and remediation.",
+        "parameters": [],
+        "examples": [
+            "Export comprehensive penetration test report with all findings"
+        ],
+        "tags": [
+            "export",
+            "report",
+            "professional",
+            "documentation"
+        ]
+    }
+]

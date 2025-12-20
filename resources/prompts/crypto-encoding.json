@@ -1,0 +1,182 @@
+[
+    {
+        "id": "base64-decode-analyze",
+        "name": "Base64 Decode & Analyze",
+        "description": "Decode Base64 data to analyze contents",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to decode Base64 data from {{source}}. Analyze decoded content for sensitive information or vulnerabilities.",
+        "parameters": [],
+        "examples": [
+            "Decode Base64 cookie value to find user ID or role"
+        ],
+        "tags": [
+            "base64",
+            "decode",
+            "analysis",
+            "encoding"
+        ]
+    },
+    {
+        "id": "url-encoding-analysis",
+        "name": "URL Encoding Analysis",
+        "description": "Analyze URL encoded parameters",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "url_decode",
+        "template": "Use Burp MCP to decode URL encoded parameters from {{url}}. Check for double encoding, obfuscated payloads, or hidden parameters.",
+        "parameters": [],
+        "examples": [
+            "Decode %2e%2e%2f to detect path traversal in encoded form"
+        ],
+        "tags": [
+            "url-encoding",
+            "decode",
+            "obfuscation",
+            "encoding"
+        ]
+    },
+    {
+        "id": "jwt-full-analysis",
+        "name": "JWT Complete Analysis",
+        "description": "Comprehensive JWT token analysis",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to comprehensively analyze JWT from {{source}}. Check algorithm, expiration, signature strength, and test for known vulnerabilities.",
+        "parameters": [],
+        "examples": [
+            "Analyze JWT for none algorithm, weak secret, or algorithm confusion"
+        ],
+        "tags": [
+            "jwt",
+            "analysis",
+            "crypto",
+            "token"
+        ]
+    },
+    {
+        "id": "hash-identification",
+        "name": "Hash Type Identification",
+        "description": "Identify hash algorithm type",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "url_decode",
+        "template": "Identify hash type from {{source}}. Analyze hash length and format to determine algorithm (MD5, SHA1, SHA256, bcrypt, etc.).",
+        "parameters": [],
+        "examples": [
+            "Identify if hash is MD5, SHA1, or bcrypt from password dump"
+        ],
+        "tags": [
+            "hash",
+            "identification",
+            "crypto",
+            "analysis"
+        ]
+    },
+    {
+        "id": "unicode-normalization",
+        "name": "Unicode Normalization Attack",
+        "description": "Test for unicode normalization vulnerabilities",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test unicode normalization at {{url}}. Try different unicode representations of same characters to bypass filters or authentication.",
+        "parameters": [],
+        "examples": [
+            "Test admin vs ⓐⓓⓜⓘⓝ for authentication bypass"
+        ],
+        "tags": [
+            "unicode",
+            "normalization",
+            "bypass",
+            "encoding"
+        ]
+    },
+    {
+        "id": "encoding-chain-bypass",
+        "name": "Multi-Layer Encoding Bypass",
+        "description": "Use encoding chains to bypass filters",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "url_encode",
+        "template": "Use Burp MCP to create encoding chains for {{payload}}. Try double encoding, mixed encoding (URL+Base64), or nested encoding to bypass WAF.",
+        "parameters": [],
+        "examples": [
+            "Double URL encode payload: %253Cscript%253E to bypass XSS filter"
+        ],
+        "tags": [
+            "encoding-chain",
+            "bypass",
+            "waf-evasion",
+            "obfuscation"
+        ]
+    },
+    {
+        "id": "hex-encoding-analysis",
+        "name": "Hex Encoding Analysis",
+        "description": "Decode and analyze hex encoded data",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "url_decode",
+        "template": "Decode hex encoded data from {{source}}. Check for obfuscated payloads, credentials, or file paths in hex format.",
+        "parameters": [],
+        "examples": [
+            "Decode hex string: 2f6574632f706173737764 = /etc/passwd"
+        ],
+        "tags": [
+            "hex",
+            "decode",
+            "analysis",
+            "encoding"
+        ]
+    },
+    {
+        "id": "weak-crypto-detection",
+        "name": "Weak Cryptography Detection",
+        "description": "Detect use of weak cryptographic algorithms",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "get_proxy_http_history",
+        "template": "Use Burp MCP to analyze crypto usage in {{url}}. Check for MD5, SHA1, DES, RC4, or other deprecated algorithms in headers, cookies, or responses.",
+        "parameters": [],
+        "examples": [
+            "Check if password hashes use MD5 instead of bcrypt"
+        ],
+        "tags": [
+            "weak-crypto",
+            "deprecated",
+            "algorithm",
+            "security"
+        ]
+    },
+    {
+        "id": "token-predictability",
+        "name": "Token Predictability Analysis",
+        "description": "Analyze tokens for predictable patterns",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "generate_random_string",
+        "template": "Use Burp MCP to analyze token generation at {{url}}. Collect multiple tokens to check for patterns, low entropy, or predictable sequences.",
+        "parameters": [],
+        "examples": [
+            "Collect 100 session tokens to analyze for sequential patterns"
+        ],
+        "tags": [
+            "token",
+            "predictability",
+            "entropy",
+            "random"
+        ]
+    },
+    {
+        "id": "encryption-oracle",
+        "name": "Encryption Oracle Attack",
+        "description": "Test for encryption/padding oracle vulnerabilities",
+        "category": "Encoding & Cryptography",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test encryption oracle at {{url}}. Manipulate encrypted data and observe error messages to decrypt without knowing the key.",
+        "parameters": [],
+        "examples": [
+            "Test CBC mode encryption for padding oracle to decrypt cookie"
+        ],
+        "tags": [
+            "encryption-oracle",
+            "padding-oracle",
+            "crypto",
+            "cbc"
+        ]
+    }
+]

@@ -1,0 +1,206 @@
+[
+    {
+        "id": "idor-test",
+        "name": "IDOR Vulnerability Test",
+        "description": "Test for Insecure Direct Object Reference",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{endpoint}} for IDOR by changing {{parameter}}",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "API endpoint with object ID"
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "ID parameter name"
+            }
+        ],
+        "examples": [
+            "Test /api/user/123 for IDOR"
+        ],
+        "tags": [
+            "idor",
+            "authorization",
+            "broken-access-control"
+        ]
+    },
+    {
+        "id": "path-traversal",
+        "name": "Path Traversal Test",
+        "description": "Test for directory traversal vulnerabilities",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{endpoint}} for path traversal in {{parameter}}",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "File access endpoint"
+            },
+            {
+                "name": "parameter",
+                "type": "string",
+                "required": true,
+                "description": "File path parameter"
+            }
+        ],
+        "examples": [
+            "Test /download?file= for path traversal"
+        ],
+        "tags": [
+            "path-traversal",
+            "lfi",
+            "file-access"
+        ]
+    },
+    {
+        "id": "idor-sequential",
+        "name": "IDOR Sequential ID Test",
+        "description": "Test IDOR with sequential ID enumeration",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_to_intruder",
+        "template": "Use Burp MCP Intruder to enumerate sequential IDs at {{url}}. Test if User A can access User B's resources by incrementing/decrementing IDs.",
+        "parameters": [],
+        "examples": [
+            "Test /api/document/1 through /api/document/1000 for unauthorized access"
+        ],
+        "tags": [
+            "idor",
+            "enumeration",
+            "sequential-id",
+            "authorization"
+        ]
+    },
+    {
+        "id": "idor-guid",
+        "name": "IDOR GUID/UUID Test",
+        "description": "Test IDOR with predictable or leaked GUIDs",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test IDOR at {{url}} using GUIDs/UUIDs. Check if GUIDs are leaked elsewhere or if server validates ownership.",
+        "parameters": [],
+        "examples": [
+            "Test /api/profile/{guid} with GUIDs from other API responses"
+        ],
+        "tags": [
+            "idor",
+            "guid",
+            "uuid",
+            "authorization"
+        ]
+    },
+    {
+        "id": "privilege-escalation-vertical",
+        "name": "Vertical Privilege Escalation",
+        "description": "Test for privilege escalation from user to admin",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test vertical privilege escalation at {{url}}. Access admin endpoints with regular user credentials.",
+        "parameters": [],
+        "examples": [
+            "Test /admin/* endpoints with regular user session token"
+        ],
+        "tags": [
+            "privilege-escalation",
+            "vertical",
+            "admin-access",
+            "authorization"
+        ]
+    },
+    {
+        "id": "privilege-escalation-horizontal",
+        "name": "Horizontal Privilege Escalation",
+        "description": "Test for horizontal privilege escalation between users",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test horizontal privilege escalation at {{url}}. Access User B's resources using User A's credentials.",
+        "parameters": [],
+        "examples": [
+            "Test /api/user/123/settings with User 456's session token"
+        ],
+        "tags": [
+            "privilege-escalation",
+            "horizontal",
+            "user-isolation",
+            "authorization"
+        ]
+    },
+    {
+        "id": "forced-browsing",
+        "name": "Forced Browsing Test",
+        "description": "Test for unprotected admin/hidden endpoints",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test forced browsing at {{url}}. Try accessing /admin, /backup, /config, /test endpoints without authentication.",
+        "parameters": [],
+        "examples": [
+            "Test common admin paths like /admin, /administrator, /manage"
+        ],
+        "tags": [
+            "forced-browsing",
+            "hidden-endpoints",
+            "admin",
+            "authorization"
+        ]
+    },
+    {
+        "id": "missing-function-access-control",
+        "name": "Missing Function-Level Access Control",
+        "description": "Test if sensitive functions lack authorization checks",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test function-level access control at {{url}}. Try admin functions (delete, modify roles) with regular user privileges.",
+        "parameters": [],
+        "examples": [
+            "Test DELETE /api/user/{id} or PUT /api/roles with regular user token"
+        ],
+        "tags": [
+            "access-control",
+            "function-level",
+            "admin-functions",
+            "authorization"
+        ]
+    },
+    {
+        "id": "parameter-manipulation",
+        "name": "Parameter Manipulation Test",
+        "description": "Test authorization bypass via parameter manipulation",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to manipulate parameters at {{url}}. Try adding/modifying parameters like admin=true, role=admin, isAdmin=1 to bypass authorization.",
+        "parameters": [],
+        "examples": [
+            "Test /api/profile by adding admin=true parameter"
+        ],
+        "tags": [
+            "parameter-manipulation",
+            "authorization",
+            "bypass",
+            "privilege-escalation"
+        ]
+    },
+    {
+        "id": "http-method-tampering",
+        "name": "HTTP Method Tampering",
+        "description": "Bypass authorization by changing HTTP methods",
+        "category": "Authorization & Access Control",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test HTTP method tampering at {{url}}. Try changing GET to POST, PUT to PATCH, or use HTTP method override headers.",
+        "parameters": [],
+        "examples": [
+            "Test if GET /api/admin returns 403 but POST /api/admin allows access"
+        ],
+        "tags": [
+            "http-method",
+            "tampering",
+            "authorization",
+            "bypass"
+        ]
+    }
+]
