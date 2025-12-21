@@ -1,0 +1,231 @@
+:root {
+    --bg-color: var(--vscode-editor-background);
+    --fg-color: var(--vscode-editor-foreground);
+    --sidebar-bg: var(--vscode-sideBar-background);
+    --border-color: var(--vscode-panel-border);
+    --accent-color: #ff6633;
+    --card-bg: var(--vscode-editor-background);
+    --card-hover-bg: var(--vscode-list-hoverBackground);
+    --input-bg: var(--vscode-input-background);
+    --input-fg: var(--vscode-input-foreground);
+    --input-border: var(--vscode-input-border);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    font-family: var(--vscode-font-family);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--fg-color);
+    opacity: 0.8;
+}
+
+#category-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.category-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: background 0.2s;
+    opacity: 0.8;
+}
+
+.category-item:hover {
+    background-color: var(--vscode-list-hoverBackground);
+    opacity: 1;
+}
+
+.category-item.active {
+    background-color: rgba(255, 102, 51, 0.2);
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+    font-weight: bold;
+    opacity: 1;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    position: relative;
+    max-width: 600px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 12px 12px 45px;
+    background-color: var(--input-bg);
+    color: var(--input-fg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(255, 102, 51, 0.3);
+}
+
+.prompts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.prompt-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.prompt-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: var(--accent-color);
+    background-color: var(--card-hover-bg);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.prompt-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--accent-color);
+}
+
+.prompt-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--fg-color);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.prompt-card:hover .actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #ff855c;
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--fg-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.no-results {
+    text-align: center;
+    padding: 50px;
+    opacity: 0.6;
+    font-size: 1.2rem;
+}
