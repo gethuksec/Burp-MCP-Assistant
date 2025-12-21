@@ -62,7 +62,8 @@
     "views": {
       "burpMCP": [
         {
-          "id": "burpMCP.prompts",
+          "type": "webview",
+          "id": "burpMCP.promptLibraryWebview",
           "name": "Prompt Library",
           "icon": "resources/burp-icon.svg"
         },
@@ -83,7 +84,7 @@
             "insertAtCursor"
           ],
           "enumDescriptions": [
-            "Copy to clipboard (then press Ctrl+Shift+I to open Cursor Chat and paste)",
+            "Copy to clipboard (then paste into your AI Assistant)",
             "Insert at cursor position in active editor"
           ],
           "default": "copy",

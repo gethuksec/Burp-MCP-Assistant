@@ -91,7 +91,7 @@ export class CommandRegistry {
             } else {
                 if (config.get('ui.showNotifications')) {
                     vscode.window.showInformationMessage(
-                        `✅ Copied "${prompt.name}" to clipboard!\n\n💡 Press Ctrl+Shift+I to open Cursor Chat, then Ctrl+V to paste.`,
+                        `✅ Copied "${prompt.name}" to clipboard!\n\n💡 Paste this into your AI Assistant chat.`,
                         'Got it!'
                     );
                 }
@@ -100,7 +100,7 @@ export class CommandRegistry {
             // Default: just copy with helpful message
             if (config.get('ui.showNotifications')) {
                 const action = await vscode.window.showInformationMessage(
-                    `✅ Copied "${prompt.name}" to clipboard!\n\n💡 Next: Press Ctrl+Shift+I to open Cursor Chat, then Ctrl+V to paste.`,
+                    `✅ Copied "${prompt.name}" to clipboard!\n\n💡 Next: Paste this into your AI Assistant chat.`,
                     'Got it!',
                     'Open Settings'
                 );

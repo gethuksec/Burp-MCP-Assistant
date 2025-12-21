@@ -1,11 +1,14 @@
 import * as vscode from 'vscode';
 import { CommandRegistry } from './commands/commandRegistry';
 import { PromptLibrary } from './prompts/promptLibrary';
+import { PromptLibraryWebviewProvider } from './webviews/promptLibraryWebview';
 import { HistoryManager } from './history/historyManager';
+import { WorkflowEngine } from './workflows/workflowEngine';
 
 let commandRegistry: CommandRegistry;
 let promptLibrary: PromptLibrary;
 let historyManager: HistoryManager;
+let workflowEngine: WorkflowEngine;
 
 export async function activate(context: vscode.ExtensionContext) {
     console.log('🎯 Burp MCP Assistant (Prompt Library) is now active!');
@@ -13,6 +16,7 @@ export async function activate(context: vscode.ExtensionContext) {
     // Initialize core components
     historyManager = new HistoryManager(context);
     promptLibrary = new PromptLibrary(context);
+    workflowEngine = new WorkflowEngine(context);
     commandRegistry = new CommandRegistry(
         promptLibrary,
         historyManager
@@ -20,6 +24,27 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // Register all commands
     commandRegistry.registerCommands(context);
+
+    // Register workflow command
+    context.subscriptions.push(
+        vscode.commands.registerCommand('burpMCP.runWorkflow', async () => {
+            const workflows = workflowEngine.getWorkflows();
+            const items = workflows.map(w => ({
+                label: w.name,
+                description: w.tags.join(', '),
+                detail: w.description,
+                workflowId: w.id
+            }));
+
+            const selected = await vscode.window.showQuickPick(items, {
+                placeHolder: 'Select a security workflow to run'
+            });
+
+            if (selected) {
+                await workflowEngine.executeWorkflow(selected.workflowId);
+            }
+        })
+    );
 
     // Register views
     registerViews(context);
@@ -38,19 +63,16 @@ export function deactivate() {
 
 function registerViews(context: vscode.ExtensionContext) {
     // Prompt Library View Provider
-    const promptLibraryViewProvider = {
-        getTreeItem: (element: any) => element,
-        getChildren: (element?: any) => {
-            if (!element) {
-                return promptLibrary.getCategories();
-            }
-            return promptLibrary.getPromptsByCategory(element.label);
-        }
-    };
+    const promptLibraryWebviewProvider = new PromptLibraryWebviewProvider(
+        context.extensionUri,
+        promptLibrary
+    );
 
-    vscode.window.registerTreeDataProvider(
-        'burpMCP.prompts',
-        promptLibraryViewProvider
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(
+            PromptLibraryWebviewProvider.viewType,
+            promptLibraryWebviewProvider
+        )
     );
 
     // History View Provider
@@ -74,9 +96,9 @@ function showWelcomeMessage(context: vscode.ExtensionContext) {
 This extension provides 100+ security testing prompts and workflows for Burp Suite MCP.
 
 📋 Setup:
-1. Configure Burp MCP in Cursor (see README)
+1. Configure Burp MCP in your AI Assistant (see README)
 2. Browse prompts in the sidebar
-3. Copy prompts and use with Cursor AI
+3. Copy prompts and use with your AI Assistant
 4. Let AI execute Burp tools for you!
 
 Ready to start?

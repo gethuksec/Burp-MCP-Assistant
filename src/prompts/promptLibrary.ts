@@ -137,7 +137,7 @@ export class PromptLibrary {
             // Copy to clipboard
             await vscode.env.clipboard.writeText(selectedPrompt.prompt.template);
             vscode.window.showInformationMessage(
-                `✅ Copied "${selectedPrompt.prompt.name}" to clipboard!\n\nPaste in Cursor Chat to use with Burp MCP.`
+                `✅ Copied "${selectedPrompt.prompt.name}" to clipboard!\n\nPaste into your AI Assistant to use with Burp MCP.`
             );
         }
     }
