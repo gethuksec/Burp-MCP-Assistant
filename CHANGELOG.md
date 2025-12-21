@@ -5,7 +5,7 @@ All notable changes to the "Burp MCP Assistant" extension will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2025-12-20
+## [0.3.0] - 2025-12-22
 
 ### Added
 
@@ -15,11 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `docs/tutorial.md` / `docs/tutorial-id.md`
   - `docs/api-documentation.md` / `docs/api-documentation-id.md`
 - **Pre-commit Hooks**: Husky + lint-staged for automated code quality checks
-- **Prompt Library UI**: Interactive Webview-based sidebar for browsing and managing prompts
 - **Workflow Engine**: Support for multi-step security testing workflows (e.g., API Audit)
+- **Favorites System**: Save frequently used prompts for quick access
+- **Search Filter**: Real-time filtering with category hierarchy preserved
 
 ### Changed
 
+- **Prompt Library UI**: Migrated from Webview to native TreeView for better stability
+  - Categories displayed as collapsible folders
+  - Auto-expand categories during search
+  - Single-click to copy prompt
+  - Right-click context menu for add to favorites
 - **Modular Prompt Library**: Refactored 2000+ lines of hardcoded prompts into 7 JSON files
   - `resources/prompts/input-validation.json`
   - `resources/prompts/auth-session.json`
@@ -30,6 +36,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `resources/prompts/reporting-docs.json`
 - **External HTML Templates**: `tools-reference.html` separated from TypeScript code
 - **Prompt Count**: Now includes 100+ expert security testing templates (up from 10+)
+
+### Removed
+
+- **Webview UI**: Replaced with native TreeView (simpler, more stable)
+- **insertAtCursor**: Removed in favor of copy-paste workflow
 
 ### Developer Experience
 

@@ -2,7 +2,7 @@
   "name": "burp-mcp-assistant",
   "displayName": "Burp MCP Assistant",
   "description": "Security testing prompts & workflows for Burp Suite MCP - 100+ expert templates for penetration testing",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "gethuksec",
   "license": "MIT",
   "icon": "resources/burp-icon.png",
