@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "publisher": "gethuksec",
   "license": "MIT",
-  "icon": "resources/burp-icon.svg",
+  "icon": "resources/burp-icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/gethuksec/burpMCP.git"
