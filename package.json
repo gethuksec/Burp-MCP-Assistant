@@ -4,6 +4,12 @@
   "description": "Security testing prompts & workflows for Burp Suite MCP - 100+ expert templates for penetration testing",
   "version": "0.2.0",
   "publisher": "gethuksec",
+  "license": "MIT",
+  "icon": "resources/burp-icon.svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gethuksec/burpMCP.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },

@@ -1,56 +1,18 @@
-# VS Code Extension Ignore File
-# Files and folders to exclude from the extension package
-
-# Source files
-src/**
-tsconfig.json
-*.ts
-
-# Build artifacts
-node_modules/**
-out/test/**
-out/**/*.map
-
-# Development files
 .vscode/**
 .vscode-test/**
-.gitignore
-.eslintrc.json
-
-# Documentation (keep only essential)
-burp_mcp_vscode_prd.md
-PROJECT_SUMMARY.md
-
-# Package management
-package-lock.json
-npm-debug.log
-yarn-error.log
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# IDE files
-.idea/**
-*.swp
-*.swo
-*~
-
-# Test files
-test/**
-**/*.test.ts
-**/*.spec.ts
-
-# Git files
+.agent/**
+.devcontainer/**
+.husky/**
 .git/**
+.gitignore
 .gitattributes
-
-# Misc
-TODO.md
-notes.md
-scratch/**
-temp/**
-tmp/**
+.eslintrc.json
+.prettierrc.json
+tsconfig.json
+vsc-extension-quickstart.md
+src/**
+**/*.map
+.DS_Store
+lint-staged.config.js
+webpack.config.js
 

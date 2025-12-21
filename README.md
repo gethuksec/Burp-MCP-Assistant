@@ -114,6 +114,13 @@ npm install
 npm run compile
 ```
 
+### Option B: Install from VSIX
+
+1. Download the latest `.vsix` release.
+2. Open VS Code / Cursor.
+3. Command Palette (`Ctrl+Shift+P`): **"Extensions: Install from VSIX..."**
+4. Select the file.
+
 ### Step 4: Run Extension in Development Mode
 
 After compiling, you need to run the extension in VS Code's Extension Development Host:
