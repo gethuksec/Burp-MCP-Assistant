@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `docs/tutorial.md` / `docs/tutorial-id.md`
   - `docs/api-documentation.md` / `docs/api-documentation-id.md`
 - **Pre-commit Hooks**: Husky + lint-staged for automated code quality checks
+- **Prompt Library UI**: Interactive Webview-based sidebar for browsing and managing prompts
+- **Workflow Engine**: Support for multi-step security testing workflows (e.g., API Audit)
 
 ### Changed
 

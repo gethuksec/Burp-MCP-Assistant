@@ -164,6 +164,18 @@ In the **Extension Development Host** window:
 - Business Logic (Race Conditions, Payment Manipulation, etc.)
 - Reporting & Documentation (PoC Generation, Evidence Collection, etc.)
 
+### 🖥️ Webview UI (New in v0.2.0)
+
+- **Interactive Sidebar** - Browse and manage prompts visually
+- **Rich Prompt Details** - View full prompt content, author, and complexity
+- **One-Click Actions** - Copy or insert prompts instantly
+
+### 🔄 Workflow Engine (New in v0.2.0)
+
+- **Automated Security Audits** - Execute multi-step security tests
+- **Chained Prompts** - Run sequences of prompts for complex scenarios
+- **Customizable Workflows** - Define your own audit paths in JSON
+
 ### 🔍 Quick Reference
 
 **All 21 Burp MCP Tools** documented:
