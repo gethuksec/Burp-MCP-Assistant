@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burp MCP Tools Reference</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      h1 {
+        color: #ff6633;
+      }
+      h2 {
+        color: #4a90e2;
+        margin-top: 30px;
+      }
+      .tool {
+        background: #f5f5f5;
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 4px solid #ff6633;
+      }
+      .tool-name {
+        font-weight: bold;
+        font-size: 1.1em;
+      }
+      .tool-desc {
+        margin: 5px 0;
+        color: #666;
+      }
+      code {
+        background: #e0e0e0;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎯 Burp MCP Tools Reference</h1>
+    <p>Quick reference for all 21 Burp MCP tools</p>
+
+    <h2>HTTP Request Execution</h2>
+    <div class="tool">
+      <div class="tool-name">send_http1_request</div>
+      <div class="tool-desc">
+        Issues an HTTP/1.1 request and returns the response
+      </div>
+      <div>
+        Parameters: <code>targetHostname</code>, <code>targetPort</code>,
+        <code>usesHttps</code>, <code>content</code>
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">send_http2_request</div>
+      <div class="tool-desc">
+        Issues an HTTP/2 request and returns the response
+      </div>
+      <div>
+        Parameters: <code>targetHostname</code>, <code>targetPort</code>,
+        <code>usesHttps</code>, <code>pseudoHeaders</code>,
+        <code>headers</code>, <code>requestBody</code>
+      </div>
+    </div>
+
+    <h2>Burp Tools Integration</h2>
+    <div class="tool">
+      <div class="tool-name">create_repeater_tab</div>
+      <div class="tool-desc">
+        Creates a new Repeater tab with specified HTTP request
+      </div>
+      <div>
+        Parameters: <code>targetHostname</code>, <code>targetPort</code>,
+        <code>usesHttps</code>, <code>content</code>, <code>tabName</code>
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">send_to_intruder</div>
+      <div class="tool-desc">Sends HTTP request to Intruder</div>
+      <div>
+        Parameters: <code>targetHostname</code>, <code>targetPort</code>,
+        <code>usesHttps</code>, <code>content</code>, <code>tabName</code>
+      </div>
+    </div>
+
+    <h2>Encoding/Decoding</h2>
+    <div class="tool">
+      <div class="tool-name">url_encode</div>
+      <div class="tool-desc">URL encodes the input string</div>
+      <div>Parameters: <code>content</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">url_decode</div>
+      <div class="tool-desc">URL decodes the input string</div>
+      <div>Parameters: <code>content</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">base64_encode</div>
+      <div class="tool-desc">Base64 encodes the input string</div>
+      <div>Parameters: <code>content</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">base64_decode</div>
+      <div class="tool-desc">Base64 decodes the input string</div>
+      <div>Parameters: <code>content</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">generate_random_string</div>
+      <div class="tool-desc">
+        Generates random string of specified length and character set
+      </div>
+      <div>Parameters: <code>length</code>, <code>characterSet</code></div>
+    </div>
+
+    <h2>Configuration Management</h2>
+    <div class="tool">
+      <div class="tool-name">output_project_options</div>
+      <div class="tool-desc">
+        Outputs current project-level configuration in JSON format
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">output_user_options</div>
+      <div class="tool-desc">
+        Outputs current user-level configuration in JSON format
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">set_project_options</div>
+      <div class="tool-desc">
+        Sets project-level configuration in JSON format
+      </div>
+      <div>Parameters: <code>json</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">set_user_options</div>
+      <div class="tool-desc">Sets user-level configuration in JSON format</div>
+      <div>Parameters: <code>json</code></div>
+    </div>
+
+    <h2>History & Monitoring</h2>
+    <div class="tool">
+      <div class="tool-name">get_proxy_http_history</div>
+      <div class="tool-desc">Displays items within the proxy HTTP history</div>
+      <div>Parameters: <code>count</code>, <code>offset</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">get_proxy_http_history_regex</div>
+      <div class="tool-desc">
+        Displays items matching regex within proxy HTTP history
+      </div>
+      <div>
+        Parameters: <code>regex</code>, <code>count</code>, <code>offset</code>
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">get_proxy_websocket_history</div>
+      <div class="tool-desc">Displays items within proxy WebSocket history</div>
+      <div>Parameters: <code>count</code>, <code>offset</code></div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">get_proxy_websocket_history_regex</div>
+      <div class="tool-desc">
+        Displays items matching regex within WebSocket history
+      </div>
+      <div>
+        Parameters: <code>regex</code>, <code>count</code>, <code>offset</code>
+      </div>
+    </div>
+
+    <h2>State Management</h2>
+    <div class="tool">
+      <div class="tool-name">set_task_execution_engine_state</div>
+      <div class="tool-desc">
+        Sets state of Burp's task execution engine (paused or running)
+      </div>
+      <div>Parameters: <code>running</code> (boolean)</div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">set_proxy_intercept_state</div>
+      <div class="tool-desc">Enables or disables Burp Proxy Intercept</div>
+      <div>Parameters: <code>intercepting</code> (boolean)</div>
+    </div>
+
+    <h2>Editor Integration</h2>
+    <div class="tool">
+      <div class="tool-name">get_active_editor_contents</div>
+      <div class="tool-desc">
+        Outputs contents of user's active message editor
+      </div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">set_active_editor_contents</div>
+      <div class="tool-desc">Sets content of user's active message editor</div>
+      <div>Parameters: <code>text</code></div>
+    </div>
+
+    <p style="margin-top: 40px; color: #666">
+      💡 <strong>Tip:</strong> Use these tool names in your prompts to direct
+      the AI which Burp tools to use!
+    </p>
+  </body>
+</html>

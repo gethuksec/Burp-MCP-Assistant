@@ -1,0 +1,41 @@
+{
+  "id": "api-audit-workflow",
+  "name": "Comprehensive API Security Audit",
+  "description": "A step-by-step workflow to audit an API for common vulnerabilities including Auth Bypass, IDOR, and Injection.",
+  "tags": ["api", "audit", "comprehensive"],
+  "initialStepId": "step-1",
+  "steps": [
+    {
+      "id": "step-1",
+      "name": "Reconnaissance & Endpoint Discovery",
+      "description": "Map out the API surface using passive crawls and documentation.",
+      "action": "copy",
+      "promptTemplate": "Use Burp Suite MCP to passively crawl the target https://example.com/api. Identify all visible endpoints and structure a sitemap.",
+      "nextStepIds": ["step-2"]
+    },
+    {
+      "id": "step-2",
+      "name": "Authentication Bypass Testing",
+      "description": "Attempt to access protected endpoints without credentials.",
+      "action": "copy",
+      "promptTemplate": "For the identified endpoints, attempt to access /api/v1/users and /api/v1/admin without any Authorization header. Record any 200 OK responses.",
+      "nextStepIds": ["step-3"]
+    },
+    {
+      "id": "step-3",
+      "name": "Privilege Escalation (IDOR)",
+      "description": "Test for horizontal logic flaws by swapping user IDs.",
+      "action": "copy",
+      "promptTemplate": "Using the authenticated session of User A (ID: 123), try to request details for User B (ID: 456) at endpoint GET /api/v1/users/456.",
+      "nextStepIds": ["step-4"]
+    },
+    {
+      "id": "step-4",
+      "name": "Input Validation Fuzzing",
+      "description": "Test injection vulnerabilities on input parameters.",
+      "action": "copy",
+      "promptTemplate": "Fuzz the 'q' parameter in GET /api/v1/search?q=test with common SQL injection and XSS payloads. Analyze responses for errors or reflections.",
+      "nextStepIds": []
+    }
+  ]
+}

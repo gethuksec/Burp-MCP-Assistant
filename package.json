@@ -2,8 +2,14 @@
   "name": "burp-mcp-assistant",
   "displayName": "Burp MCP Assistant",
   "description": "Security testing prompts & workflows for Burp Suite MCP - 100+ expert templates for penetration testing",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "gethuksec",
+  "license": "MIT",
+  "icon": "resources/burp-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gethuksec/burpMCP.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -31,23 +37,40 @@
       },
       {
         "command": "burpMCP.copyPrompt",
-        "title": "Burp MCP: Copy Prompt to Clipboard"
-      },
-      {
-        "command": "burpMCP.insertPrompt",
-        "title": "Burp MCP: Insert Prompt at Cursor"
+        "title": "Copy"
       },
       {
         "command": "burpMCP.searchPrompts",
-        "title": "Burp MCP: Search Prompts"
+        "title": "Burp MCP: Search Prompts",
+        "icon": "$(search)"
+      },
+      {
+        "command": "burpMCP.clearSearch",
+        "title": "Clear Search",
+        "icon": "$(close)"
       },
       {
         "command": "burpMCP.showToolsReference",
         "title": "Burp MCP: Show Tools Reference"
       },
       {
-        "command": "burpMCP.clearHistory",
-        "title": "Burp MCP: Clear Usage History"
+        "command": "burpMCP.addToFavorites",
+        "title": "Add to Favorites",
+        "icon": "$(star-empty)"
+      },
+      {
+        "command": "burpMCP.removeFromFavorites",
+        "title": "Remove from Favorites",
+        "icon": "$(star-full)"
+      },
+      {
+        "command": "burpMCP.refreshFavorites",
+        "title": "Refresh Favorites",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "burpMCP.clearFavorites",
+        "title": "Clear All Favorites"
       }
     ],
     "viewsContainers": {
@@ -62,13 +85,13 @@
     "views": {
       "burpMCP": [
         {
-          "id": "burpMCP.prompts",
+          "id": "burpMCP.promptLibrary",
           "name": "Prompt Library",
           "icon": "resources/burp-icon.svg"
         },
         {
-          "id": "burpMCP.history",
-          "name": "Recently Used",
+          "id": "burpMCP.favorites",
+          "name": "Favorites",
           "icon": "resources/burp-icon.svg"
         }
       ]
@@ -76,24 +99,6 @@
     "configuration": {
       "title": "Burp MCP Assistant",
       "properties": {
-        "burpMCP.prompt.defaultAction": {
-          "type": "string",
-          "enum": [
-            "copy",
-            "insertAtCursor"
-          ],
-          "enumDescriptions": [
-            "Copy to clipboard (then press Ctrl+Shift+I to open Cursor Chat and paste)",
-            "Insert at cursor position in active editor"
-          ],
-          "default": "copy",
-          "description": "Default action when clicking a prompt"
-        },
-        "burpMCP.prompt.autoInsert": {
-          "type": "boolean",
-          "default": false,
-          "description": "[Deprecated] Use defaultAction instead"
-        },
         "burpMCP.prompt.includeComments": {
           "type": "boolean",
           "default": true,
@@ -107,7 +112,7 @@
         "burpMCP.ui.showNotifications": {
           "type": "boolean",
           "default": true,
-          "description": "Show notifications when copying/inserting prompts"
+          "description": "Show notifications when copying prompts"
         }
       }
     },
@@ -129,10 +134,42 @@
       }
     ],
     "menus": {
+      "view/title": [
+        {
+          "command": "burpMCP.searchPrompts",
+          "when": "view == burpMCP.promptLibrary",
+          "group": "navigation"
+        },
+        {
+          "command": "burpMCP.clearSearch",
+          "when": "view == burpMCP.promptLibrary",
+          "group": "navigation"
+        },
+        {
+          "command": "burpMCP.refreshFavorites",
+          "when": "view == burpMCP.favorites",
+          "group": "navigation"
+        }
+      ],
       "view/item/context": [
         {
           "command": "burpMCP.copyPrompt",
-          "when": "view == burpMCP.prompts && viewItem == prompt",
+          "when": "view == burpMCP.promptLibrary && viewItem == prompt",
+          "group": "inline"
+        },
+        {
+          "command": "burpMCP.addToFavorites",
+          "when": "view == burpMCP.promptLibrary && viewItem == prompt",
+          "group": "1_favorites"
+        },
+        {
+          "command": "burpMCP.removeFromFavorites",
+          "when": "view == burpMCP.favorites && viewItem == favoriteItem",
+          "group": "1_favorites"
+        },
+        {
+          "command": "burpMCP.copyPrompt",
+          "when": "view == burpMCP.favorites && viewItem == favoriteItem",
           "group": "inline"
         }
       ]
@@ -144,20 +181,34 @@
     "watch": "node node_modules/typescript/bin/tsc -watch -p ./",
     "pretest": "npm run compile",
     "lint": "eslint src --ext ts",
-    "test": "xvfb-run node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix"
+    ],
+    "resources/**/*.json": [
+      "prettier --write"
+    ],
+    "resources/**/*.html": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.x",
     "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^6.13.0",
-    "@typescript-eslint/parser": "^6.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "@vscode/test-electron": "^2.3.8",
     "eslint": "^8.54.0",
     "glob": "^10.3.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "mocha": "^10.2.0",
+    "prettier": "^3.7.4",
     "typescript": "^5.3.0"
-  },
-  "dependencies": {}
+  }
 }

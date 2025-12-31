@@ -22,10 +22,12 @@ suite('Extension Test Suite', () => {
         const expectedCommands = [
             'burpMCP.openPromptLibrary',
             'burpMCP.copyPrompt',
-            'burpMCP.insertPrompt',
             'burpMCP.searchPrompts',
+            'burpMCP.clearSearch',
             'burpMCP.showToolsReference',
-            'burpMCP.clearHistory'
+            'burpMCP.addToFavorites',
+            'burpMCP.removeFromFavorites',
+            'burpMCP.refreshFavorites'
         ];
 
         for (const cmd of expectedCommands) {

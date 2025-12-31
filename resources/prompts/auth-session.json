@@ -1,0 +1,195 @@
+[
+    {
+        "id": "auth-bypass",
+        "name": "Authentication Bypass Test",
+        "description": "Test for authentication bypass vulnerabilities",
+        "category": "Authentication & Session",
+        "mcpTool": "send_http1_request",
+        "template": "Test {{endpoint}} for authentication bypass",
+        "parameters": [
+            {
+                "name": "endpoint",
+                "type": "url",
+                "required": true,
+                "description": "Protected endpoint URL"
+            }
+        ],
+        "examples": [
+            "Test /admin for authentication bypass"
+        ],
+        "tags": [
+            "auth",
+            "bypass",
+            "broken-authentication"
+        ]
+    },
+    {
+        "id": "jwt-manipulation",
+        "name": "JWT Token Manipulation",
+        "description": "Test JWT token for common vulnerabilities",
+        "category": "Authentication & Session",
+        "mcpTool": "base64_decode",
+        "template": "Decode and analyze JWT token from {{source}}",
+        "parameters": [
+            {
+                "name": "source",
+                "type": "string",
+                "required": true,
+                "description": "Source of JWT token (header/cookie)"
+            }
+        ],
+        "examples": [
+            "Analyze JWT from Authorization header"
+        ],
+        "tags": [
+            "jwt",
+            "token",
+            "auth",
+            "crypto"
+        ]
+    },
+    {
+        "id": "brute-force-login",
+        "name": "Login Brute Force Attack",
+        "description": "Brute force login credentials",
+        "category": "Authentication & Session",
+        "mcpTool": "send_to_intruder",
+        "template": "Use Burp MCP Intruder to brute force {{url}} login. Test common username/password combinations and check for account lockout mechanisms.",
+        "parameters": [],
+        "examples": [
+            "Brute force /api/login with common credentials list"
+        ],
+        "tags": [
+            "brute-force",
+            "authentication",
+            "password",
+            "intruder"
+        ]
+    },
+    {
+        "id": "credential-stuffing",
+        "name": "Credential Stuffing Attack",
+        "description": "Test credential stuffing with leaked credentials",
+        "category": "Authentication & Session",
+        "mcpTool": "send_to_intruder",
+        "template": "Use Burp MCP to test {{url}} for credential stuffing. Use lists of breached credentials to identify reused passwords.",
+        "parameters": [],
+        "examples": [
+            "Test login with Have I Been Pwned credential list"
+        ],
+        "tags": [
+            "credential-stuffing",
+            "authentication",
+            "password-reuse",
+            "breach"
+        ]
+    },
+    {
+        "id": "2fa-bypass-reuse",
+        "name": "2FA Code Reuse Test",
+        "description": "Test if 2FA codes can be reused",
+        "category": "Authentication & Session",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} 2FA implementation. Check if codes can be reused, don't expire, or can be brute-forced.",
+        "parameters": [],
+        "examples": [
+            "Test /verify-2fa with same code multiple times"
+        ],
+        "tags": [
+            "2fa",
+            "mfa",
+            "bypass",
+            "authentication"
+        ]
+    },
+    {
+        "id": "2fa-bypass-response",
+        "name": "2FA Response Manipulation",
+        "description": "Bypass 2FA by manipulating response",
+        "category": "Authentication & Session",
+        "mcpTool": "send_http1_request",
+        "template": "Use Burp MCP to test {{url}} for 2FA bypass via response manipulation. Try changing {\"success\": false} to {\"success\": true} or skipping 2FA step entirely.",
+        "parameters": [],
+        "examples": [
+            "Test 2FA by modifying JSON response from false to true"
+        ],
+        "tags": [
+            "2fa",
+            "mfa",
+            "bypass",
+            "response-manipulation"
+        ]
+    },
+    {
+        "id": "jwt-none-algorithm",
+        "name": "JWT None Algorithm Bypass",
+        "description": "Test JWT with alg: none to bypass signature",
+        "category": "Authentication & Session",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to decode JWT from {{url}}, change algorithm to \"none\", remove signature, and resend to bypass authentication.",
+        "parameters": [],
+        "examples": [
+            "Test JWT by changing alg to none and removing signature"
+        ],
+        "tags": [
+            "jwt",
+            "token",
+            "none-algorithm",
+            "bypass"
+        ]
+    },
+    {
+        "id": "jwt-algorithm-confusion",
+        "name": "JWT Algorithm Confusion (RS256 to HS256)",
+        "description": "Test JWT algorithm confusion attack",
+        "category": "Authentication & Session",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to test JWT algorithm confusion at {{url}}. Change RS256 to HS256 and sign with public key to forge tokens.",
+        "parameters": [],
+        "examples": [
+            "Test JWT by confusing RS256 with HS256 using public key"
+        ],
+        "tags": [
+            "jwt",
+            "algorithm-confusion",
+            "rs256",
+            "hs256"
+        ]
+    },
+    {
+        "id": "jwt-weak-secret",
+        "name": "JWT Weak Secret Brute Force",
+        "description": "Brute force JWT secret key",
+        "category": "Authentication & Session",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to extract JWT from {{url}} and brute force the secret key using common passwords or dictionary attacks.",
+        "parameters": [],
+        "examples": [
+            "Brute force JWT secret with rockyou.txt wordlist"
+        ],
+        "tags": [
+            "jwt",
+            "brute-force",
+            "weak-secret",
+            "crypto"
+        ]
+    },
+    {
+        "id": "jwt-kid-manipulation",
+        "name": "JWT KID Parameter Injection",
+        "description": "Manipulate JWT kid parameter for path traversal or SQL injection",
+        "category": "Authentication & Session",
+        "mcpTool": "base64_decode",
+        "template": "Use Burp MCP to test JWT kid parameter at {{url}}. Try path traversal (/dev/null), SQL injection, or command injection in the kid field.",
+        "parameters": [],
+        "examples": [
+            "Test JWT kid parameter with ../../../../dev/null for arbitrary signing"
+        ],
+        "tags": [
+            "jwt",
+            "kid",
+            "path-traversal",
+            "injection"
+        ]
+    }
+]

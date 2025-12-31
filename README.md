@@ -114,13 +114,46 @@ npm install
 npm run compile
 ```
 
-### Step 4: Start Testing! 🎉
+### Option B: Install from VSIX
 
-1. Open Burp MCP Assistant sidebar in Cursor
-2. Browse prompt categories
-3. Click to copy prompt
-4. Paste in Cursor Chat
-5. Watch AI execute security tests!
+1. Download the latest `.vsix` release.
+2. Open VS Code / Cursor.
+3. Command Palette (`Ctrl+Shift+P`): **"Extensions: Install from VSIX..."**
+4. Select the file.
+
+### Step 4: Run Extension in Development Mode
+
+After compiling, you need to run the extension in VS Code's Extension Development Host:
+
+1. **Open Run and Debug**
+   - Click the "Run and Debug" icon in the Primary Side Bar (or press `Ctrl+Shift+D` / `Cmd+Shift+D`)
+
+2. **Create launch.json**
+   - Click on the text "create a launch.json file"
+   - An autocomplete dropdown will appear
+
+3. **Select Extension Type**
+   - Scroll and select **"{ } VS Code Extension Development"**
+
+4. **Save launch.json**
+   - The file will be created in `.vscode/launch.json`
+   - Save the file (`Ctrl+S` / `Cmd+S`)
+
+5. **Launch Extension**
+   - Click the green play button "Launch Extension" (or press `F5`)
+   - A new VS Code window (Extension Development Host) will open
+   - Your extension is now running in this new window!
+
+### Step 5: Start Testing! 🎉
+
+In the **Extension Development Host** window:
+
+1. Look for the 🎯 target icon in the Activity Bar (left sidebar)
+2. Click it to open Burp MCP Assistant sidebar
+3. Browse prompt categories
+4. Click to copy prompt
+5. Paste in Cursor/VS Code Chat
+6. Watch AI execute security tests!
 
 ---
 
@@ -137,6 +170,18 @@ npm run compile
 - Encoding & Cryptography (Hash Cracking, Encoding Chains, etc.)
 - Business Logic (Race Conditions, Payment Manipulation, etc.)
 - Reporting & Documentation (PoC Generation, Evidence Collection, etc.)
+
+### 🖥️ Webview UI (New in v0.2.0)
+
+- **Interactive Sidebar** - Browse and manage prompts visually
+- **Rich Prompt Details** - View full prompt content, author, and complexity
+- **One-Click Actions** - Copy or insert prompts instantly
+
+### 🔄 Workflow Engine (New in v0.2.0)
+
+- **Automated Security Audits** - Execute multi-step security tests
+- **Chained Prompts** - Run sequences of prompts for complex scenarios
+- **Customizable Workflows** - Define your own audit paths in JSON
 
 ### 🔍 Quick Reference
 
