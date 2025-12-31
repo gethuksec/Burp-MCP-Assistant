@@ -1,6 +1,6 @@
 # 🎯 Burp MCP Assistant
 
-**Security testing prompts & workflows for Burp Suite MCP**
+Security testing prompts & workflows for Burp Suite MCP
 
 ![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -29,6 +29,7 @@ Burp MCP Assistant is a **prompt library and cheatsheet** that helps you perform
 ### NOT a Connection Tool
 
 This extension **does NOT** connect to Burp Suite directly. Instead, it provides:
+
 - 📚 **100+ Expert Prompts** for security testing
 - 🎯 **Quick Reference** for all 21 Burp MCP tools  
 - 📋 **Copy-paste Templates** for common attacks
@@ -50,6 +51,7 @@ This extension **does NOT** connect to Burp Suite directly. Instead, it provides
 ### Step 1: Setup Burp Suite MCP Server (One Time)
 
 1. **Install Burp MCP Extension** in Burp Suite
+
    ```bash
    git clone https://github.com/portswigger/mcp-server.git
    cd mcp-server
@@ -63,6 +65,7 @@ This extension **does NOT** connect to Burp Suite directly. Instead, it provides
 ### Step 2: Configure Cursor / AntiGravity (One Time)
 
 Add to `~/.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -81,6 +84,7 @@ Add to `~/.cursor/mcp.json`:
 ```
 
 Example
+
 ```json
 {
   "mcpServers": {
@@ -102,6 +106,7 @@ Example
 ### Step 3: Install This Extension
 
 Install "Burp MCP Assistant" from VS Code marketplace or from source:
+
 ```bash
 git clone https://github.com/gethuksec/burpMCP.git
 cd burpMCP
@@ -124,6 +129,7 @@ npm run compile
 ### 📚 Prompt Library
 
 **100+ Expert Templates** organized by category:
+
 - Input Validation (SQLi, XSS, SSRF, Command Injection, etc.)
 - Authentication & Session (Bypass, JWT, Session Fixation, etc.)
 - Authorization & Access Control (IDOR, Privilege Escalation, etc.)
@@ -135,6 +141,7 @@ npm run compile
 ### 🔍 Quick Reference
 
 **All 21 Burp MCP Tools** documented:
+
 - Tool name, parameters, examples
 - Common usage patterns
 - Best practices
@@ -154,7 +161,7 @@ npm run compile
 
 ### Example 1: SQL Injection Testing
 
-```
+```markdown
 1. Open sidebar → "Input Validation" → "SQL Injection Basic Test"
 2. Click "Copy Prompt"
 3. In Cursor Chat:
@@ -172,7 +179,7 @@ npm run compile
 
 ### Example 2: API Security Audit
 
-```
+```markdown
 1. Sidebar → "API Security" → "Comprehensive API Test"
 2. Copy prompt
 3. Cursor Chat:
@@ -207,6 +214,7 @@ npm run compile
 ## 🎯 Prompt Categories
 
 ### Input Validation
+
 - SQL Injection (Basic, Blind, Time-based, Error-based)
 - Cross-Site Scripting (Reflected, Stored, DOM-based)
 - SSRF (Server-Side Request Forgery)
@@ -217,6 +225,7 @@ npm run compile
 - LDAP Injection
 
 ### Authentication & Session
+
 - Authentication Bypass
 - Brute Force / Credential Stuffing
 - Session Fixation
@@ -227,6 +236,7 @@ npm run compile
 - Password Reset Flaws
 
 ### Authorization & Access Control
+
 - IDOR (Insecure Direct Object Reference)
 - Privilege Escalation (Horizontal, Vertical)
 - Forced Browsing
@@ -234,6 +244,7 @@ npm run compile
 - CORS Misconfiguration
 
 ### API Security
+
 - REST API Testing
 - GraphQL Security
 - SOAP Testing
@@ -243,6 +254,7 @@ npm run compile
 - Excessive Data Exposure
 
 ### Encoding & Cryptography
+
 - URL Encoding/Decoding
 - Base64 Operations
 - Hash Identification
@@ -251,6 +263,7 @@ npm run compile
 - Encoding Chains
 
 ### Business Logic
+
 - Race Conditions
 - Payment Manipulation
 - Workflow Bypass
@@ -258,6 +271,7 @@ npm run compile
 - Resource Exhaustion
 
 ### Reporting & Documentation
+
 - Proof of Concept Generation
 - Evidence Collection
 - Finding Documentation
@@ -283,25 +297,32 @@ npm run compile
 ## 💡 Tips & Best Practices
 
 ### 1. **Be Specific in Your Prompts**
+
 ❌ "Test this for XSS"
 ✅ "Test the 'search' parameter at /search?q= for reflected XSS using common payloads"
 
 ### 2. **Combine Multiple Prompts**
+
 Use multiple prompts for comprehensive testing:
+
 - Start with reconnaissance prompts
 - Then run specific vulnerability tests
 - Finally generate documentation
 
 ### 3. **Customize Prompts**
+
 Edit prompts to match your testing methodology:
+
 - Adjust payloads
 - Add specific checks
 - Include compliance requirements
 
 ### 4. **Use Workflows**
+
 For complete audits, use workflow templates that chain multiple tests together.
 
 ### 5. **Review AI Output**
+
 Always verify AI-generated findings manually before reporting!
 
 ---
@@ -327,6 +348,7 @@ Add your own prompts by editing the configuration or contributing to the library
 ### Importing/Exporting Prompts
 
 Share prompts with your team:
+
 - Export: Save prompts as JSON
 - Import: Load team's prompt library
 - Sync: Keep prompts updated
@@ -358,9 +380,9 @@ Share prompts with your team:
 
 ## 📚 Resources
 
-- **Burp MCP Server**: https://github.com/portswigger/mcp-server
-- **MCP Protocol**: https://modelcontextprotocol.io
-- **Burp Suite**: https://portswigger.net/burp
+- **Burp MCP Server**: <https://github.com/portswigger/mcp-server>
+- **MCP Protocol**: <https://modelcontextprotocol.io>
+- **Burp Suite**: <https://portswigger.net/burp>
 - **Documentation**: [GitHub Wiki](https://github.com/gethuksec/burpMCP/wiki)
 
 ---
